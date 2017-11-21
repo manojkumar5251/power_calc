@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/styles.css" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="/script.js"></script>
+	<script src = "/socket.io/socket.io.js"></script>
+
+	<title>
+		Power calc
+	</title>
+</head>
+
+<body style="background-color:red">
+	<center>
+		<br />
+
+		<div class="container well">
+			<h1> Power Calculation </h1>
+			<br />
+
+			<form>
+				<div id="bulb">
+					<div class="row" >
+						<div class="col-sm-3">Lamps (Bulb)</div>
+						<div class="col-sm-2"><button id="bulb_plus" type="button" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="bulb-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+			          <option value="40">40 Watt</option>
+			          <option value="60">60 Watt</option>
+			          <option value="100">100 Watt</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="bulb-0-value"class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="cfl">
+					<div class="row">
+						<div class="col-sm-3">Lamps (CFL)</div>
+						<div class="col-sm-2"><button id="cfl_plus"type="button" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="cfl-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+			          <option value="11">11 Watt</option>
+			          <option value="22">22 Watt</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="cfl-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="tube_light">
+					<div class="row">
+						<div class="col-sm-3">Tube Lights</div>
+						<div class="col-sm-2"><button type="button" id="tube_light_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="tube_light-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+			          <option value="40">40 Watt</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="tube_light-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="frige">
+					<div class="row">
+						<div class="col-sm-3">Refrigerators</div>
+						<div class="col-sm-2"><button type="button"  id="frige_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="frige-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="62">165 Liters</option>
+			          <option value="63">Frost Free 480L </option>
+			          <option value="64">Non Frost Free 360L</option>
+			          <option value="65">Side by Side 560L</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="frige-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="window_ac">
+					<div class="row">
+						<div class="col-sm-3">Window air conditioner</div>
+						<div class="col-sm-2"><button type="button" id="window_ac_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="window_ac-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+			          <option value="67">0.75 Ton AC</option>
+			          <option value="68">1 Ton AC</option>
+								<option value="69">1.5 Ton AC</option>
+								<option value="70">2 Ton AC</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="window_ac-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="split_ac">
+					<div class="row">
+						<div class="col-sm-3">Split air conditioner</div>
+						<div class="col-sm-2"><button type="button" id="split_ac_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="split_ac-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+			          <option value="72">1 Ton AC</option>
+								<option value="73">2 Ton AC</option>
+								<option value="74">3 Ton AC</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="split_ac-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="fan">
+					<div class="row">
+						<div class="col-sm-3">FANS</div>
+						<div class="col-sm-2"><button type="button" id="fan_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="fan-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="76">Ceiling Fan</option>
+								<option value="77">Table Fan</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="fan-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="projector">
+					<div class="row">
+						<div class="col-sm-3">Projector</div>
+						<div class="col-sm-2"><button type="button" id="projector_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="projector-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="79">Projector</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="projector-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="photocopier">
+					<div class="row">
+						<div class="col-sm-3">Photocopier</div>
+						<div class="col-sm-2"><button type="button" id="photocopier_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="photocopier-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="81">Photocopier(Small) </option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="photocopier-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="plasma">
+					<div class="row">
+						<div class="col-sm-3">Plasma TV</div>
+						<div class="col-sm-2"><button type="button" id="plasma_plus" class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="plasma-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="83">42 inch Plasma</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="plasma-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="lcdtv">
+					<div class="row">
+						<div class="col-sm-3">LCD TV</div>
+						<div class="col-sm-2"><button type="button" id="lcdtv_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="lcdtv-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="85">20 inch LCD</option>
+								<option value="86">27 inch LCD</option>
+								<option value="87">32 inch LCD</option>
+								<option value="88">37 inch LCD</option>
+								<option value="89">42 inch LCD</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="lcdtv-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="printer">
+					<div class="row">
+						<div class="col-sm-3">Printer</div>
+						<div class="col-sm-2"><button type="button" id="printer_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="printer-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="91">132 COL DMP</option>
+								<option value="92">80 COL DMP</option>
+								<option value="93">INKJET Printer(Small)</option>
+								<option value="94">INKJET Printer(Big)</option>
+								<option value="95">LASER Printer(Small)</option>
+								<option value="96">LASER Printer(Big)</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="printer-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="scanner">
+					<div class="row">
+						<div class="col-sm-3">Scanners</div>
+						<div class="col-sm-2"><button type="button" id="scanner_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="scanner-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="98">Scanner (Small)</option>
+								<option value="99">Scanner (Big)</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="scanner-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="fax">
+					<div class="row">
+						<div class="col-sm-3">Fax Machines</div>
+						<div class="col-sm-2"><button type="button" id="fax_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="fax-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="101">Fax Machine</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="fax-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="audio_sys">
+					<div class="row">
+						<div class="col-sm-3">Audio System</div>
+						<div class="col-sm-2"><button type="button" id="audio_sys_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="audio_sys-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="103">Music System</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="audio_sys-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+				<hr />
+
+				<div id="water_heater">
+					<div class="row">
+						<div class="col-sm-3">Water Heater/Gease</div>
+						<div class="col-sm-2"><button type="button" id="water_heater_plus"class="btn btn-success">+</button></div>
+						<div class="col-sm-4">
+							<select name="water_heater-0" class="form-control" >
+								<option selected="selected" value="0">Select</option>
+								<option value="2000">2000 Watt</option>
+								<option value="1000">1000 Watt</option>
+		          </select>
+				    </div>
+			      <div class="col-sm-2"><input type="text" placeholder='Quantity' name="water_heater-0-value" class="form-control" ></div>
+			    </div>
+				</div>
+			</form>
+			<hr />
+
+			<button type="button" id="calc" class="btn button btn-success" style="width:200" ><h4>Calculate</h4></button>
+		</div>
+	</center>
+	<div id=serialize class="container well" style="max-width:500px;display:none;">
+		<center>
+			<img style="align-self:center"src="img.png" /><br />
+      <text id="txt" style="font-size:32px;font-family: Lobster;"></text>
+		</center>
+	</div>
+</body>
+
+</html>
